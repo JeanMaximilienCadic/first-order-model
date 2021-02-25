@@ -27,7 +27,7 @@ if __name__ == "__main__":
                         kp_detector=KPDetector(**model_params['kp_detector_params'],
                                                **model_params['common_params']),
                         checkpoint=opt.checkpoint,
-                        dataset=FramesDataset(is_train=False, **dataset_params),
+                        dataset=FramesDataset(**dataset_params),
                         device_ids=opt.device_ids,
                         verbose=opt.verbose)
     animator.run()

@@ -1,28 +1,13 @@
-import matplotlib
-
-matplotlib.use('Agg')
-
-import os, sys
 import yaml
 from argparse import ArgumentParser
-from time import gmtime, strftime
-from shutil import copy
-
 from fommia.data.dataset import FramesDataset
 
 from fommia.modules.generator import OcclusionAwareGenerator
 from fommia.modules.discriminator import MultiScaleDiscriminator
 from fommia.modules.keypoint_detector import KPDetector
-
-import torch
-
-from fommia.reconstruct import reconstruction
+from fommia.reconstruct import Reconstructor
 
 if __name__ == "__main__":
-
-    if sys.version_info[0] < 3:
-        raise Exception("You must use Python 3 or higher. Recommended version is Python 3.7")
-
     parser = ArgumentParser()
     parser.add_argument("--config", required=True, help="path to config")
     parser.add_argument("--mode", default="train", choices=["train", "reconstruction", "animate"])
@@ -34,45 +19,16 @@ if __name__ == "__main__":
     parser.set_defaults(verbose=False)
 
     opt = parser.parse_args()
-    with open(opt.config) as f:
-        config = yaml.load(f)
+    config = yaml.load(open(opt.config))
+    model_params, dataset_params =config['dataset_params'], config['model_params']
 
-    if opt.checkpoint is not None:
-        log_dir = os.path.join(*os.path.split(opt.checkpoint)[:-1])
-    else:
-        log_dir = os.path.join(opt.log_dir, os.path.basename(opt.config).split('.')[0])
-        log_dir += ' ' + strftime("%d_%m_%y_%H.%M.%S", gmtime())
-
-    generator = OcclusionAwareGenerator(**config['model_params']['generator_params'],
-                                        **config['model_params']['common_params'])
-
-    if torch.cuda.is_available():
-        generator.to(opt.device_ids[0])
-    if opt.verbose:
-        print(generator)
-
-    discriminator = MultiScaleDiscriminator(**config['model_params']['discriminator_params'],
-                                            **config['model_params']['common_params'])
-    if torch.cuda.is_available():
-        discriminator.to(opt.device_ids[0])
-    if opt.verbose:
-        print(discriminator)
-
-    kp_detector = KPDetector(**config['model_params']['kp_detector_params'],
-                             **config['model_params']['common_params'])
-
-    if torch.cuda.is_available():
-        kp_detector.to(opt.device_ids[0])
-
-    if opt.verbose:
-        print(kp_detector)
-
-    dataset = FramesDataset(is_train=(opt.mode == 'train'), **config['dataset_params'])
-
-    if not os.path.exists(log_dir):
-        os.makedirs(log_dir)
-    if not os.path.exists(os.path.join(log_dir, os.path.basename(opt.config))):
-        copy(opt.config, log_dir)
-
-    print("Reconstruction...")
-    reconstruction(config, generator, kp_detector, opt.checkpoint, log_dir, dataset)
+    # Reconstructor
+    reconstructor = Reconstructor(config,
+                                  generator = OcclusionAwareGenerator(**model_params['generator_params'],
+                                                                      **model_params['common_params']),
+                                  discriminator = MultiScaleDiscriminator(**model_params['discriminator_params'],
+                                                                          **model_params['common_params']),
+                                  kp_detector = KPDetector(**model_params['kp_detector_params'],
+                                                           **model_params['common_params']),
+                                  checkpoint=opt.checkpoint,
+                                  dataset=FramesDataset(**dataset_params))
