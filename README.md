@@ -25,6 +25,21 @@ pip install -r requirements.txt
 
 There are several configuration (```config/dataset_name.yaml```) files one for each `dataset`. See ```config/taichi-256.yaml``` to get description of each parameter.
 
+### Test the setup
+```
+python -m fommia.test
+```
+
+```
+=1= TEST PASSED : fommia
+=1= TEST PASSED : fommia.animate
+=1= TEST PASSED : fommia.data
+=1= TEST PASSED : fommia.data.dataset
+=1= TEST PASSED : fommia.modules
+=1= TEST PASSED : fommia.reconstruct
+=1= TEST PASSED : fommia.test
+=1= TEST PASSED : fommia.trainers
+```
 
 ### Pre-trained checkpoint
 Checkpoints can be found under following link: [google-drive](https://drive.google.com/open?id=1PyQJmkdCsAkOYwUyaj_l-l0as-iLDgeH) or [yandex-disk](https://yadi.sk/d/lEw8uRm140L_eQ).
