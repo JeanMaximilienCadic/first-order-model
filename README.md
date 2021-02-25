@@ -7,11 +7,11 @@ This repository contains the source code for the paper [First Order Motion Model
 The videos on the left show the driving videos. The first row on the right for each dataset shows the source videos. The bottom row contains the animated sequences with motion transferred from the driving video and object taken from the source image. We trained a separate network for each task.
 
 ### VoxCeleb Dataset
-![Screenshot](__data__/sup-mat/vox-teaser.gif)
+![Screenshot](sup-mat/vox-teaser.gif)
 ### Fashion Dataset
-![Screenshot](__data__/sup-mat/fashion-teaser.gif)
+![Screenshot](sup-mat/fashion-teaser.gif)
 ### MGIF Dataset
-![Screenshot](__data__/sup-mat/mgif-teaser.gif)
+![Screenshot](sup-mat/mgif-teaser.gif)
 
 
 ### Installation
@@ -77,7 +77,7 @@ We prepare a special demo for the google-colab, see: ```demo-colab.ipynb```.
 
 ### Face-swap
 It is possible to modify the method to perform face-swap using supervised segmentation masks.
-![Screenshot](__data__/sup-mat/face-swap.gif)
+![Screenshot](sup-mat/face-swap.gif)
 For both unsupervised and supervised video editing, such as face-swap, please refer to [Motion Co-Segmentation](https://github.com/AliaksandrSiarohin/motion-cosegmentation).
 
 
