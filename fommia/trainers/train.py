@@ -8,9 +8,9 @@ from fommia.modules.model import GeneratorFullModel, DiscriminatorFullModel
 
 from torch.optim.lr_scheduler import MultiStepLR
 
-from fommia.data.sync_batchnorm import DataParallelWithCallback
+from fommia.data import DataParallelWithCallback
 
-from fommia.data.frames_dataset import DatasetRepeater
+from fommia.data.dataset import DatasetRepeater
 
 
 def train(config, generator, discriminator, kp_detector, checkpoint, log_dir, dataset, device_ids):

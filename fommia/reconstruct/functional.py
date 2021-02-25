@@ -5,7 +5,7 @@ from torch.utils.data import DataLoader
 from fommia.trainers.logger import Logger, Visualizer
 import numpy as np
 import imageio
-from fommia.data.sync_batchnorm import DataParallelWithCallback
+from fommia.data import DataParallelWithCallback
 
 
 def reconstruction(config, generator, kp_detector, checkpoint, log_dir, dataset):

@@ -8,7 +8,7 @@ from argparse import ArgumentParser
 from time import gmtime, strftime
 from shutil import copy
 
-from fommia.data.frames_dataset import FramesDataset
+from fommia.data.dataset import FramesDataset
 
 from fommia.modules.generator import OcclusionAwareGenerator
 from fommia.modules.discriminator import MultiScaleDiscriminator
@@ -16,7 +16,7 @@ from fommia.modules.keypoint_detector import KPDetector
 
 import torch
 
-from fommia.trainers import train, reconstruction
+from fommia.trainers import train
 
 if __name__ == "__main__":
     
