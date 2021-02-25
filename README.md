@@ -7,11 +7,11 @@ This repository contains the source code for the paper [First Order Motion Model
 The videos on the left show the driving videos. The first row on the right for each dataset shows the source videos. The bottom row contains the animated sequences with motion transferred from the driving video and object taken from the source image. We trained a separate network for each task.
 
 ### VoxCeleb Dataset
-![Screenshot](sup-mat/vox-teaser.gif)
+![Screenshot](imgs/vox-teaser.gif)
 ### Fashion Dataset
-![Screenshot](sup-mat/fashion-teaser.gif)
+![Screenshot](imgs/fashion-teaser.gif)
 ### MGIF Dataset
-![Screenshot](sup-mat/mgif-teaser.gif)
+![Screenshot](imgs/mgif-teaser.gif)
 
 
 ### Installation
@@ -77,7 +77,7 @@ We prepare a special demo for the google-colab, see: ```demo-colab.ipynb```.
 
 ### Face-swap
 It is possible to modify the method to perform face-swap using supervised segmentation masks.
-![Screenshot](sup-mat/face-swap.gif)
+![Screenshot](imgs/face-swap.gif)
 For both unsupervised and supervised video editing, such as face-swap, please refer to [Motion Co-Segmentation](https://github.com/AliaksandrSiarohin/motion-cosegmentation).
 
 
@@ -123,14 +123,14 @@ In this way there are no specific requirements for the driving video and source 
 However this usually leads to poor performance since unrelevant details such as shape is transfered.
 Check animate parameters in ```taichi-256.yaml``` to enable this mode.
 
-<img src="sup-mat/absolute-demo.gif" width="512"> 
+<img src="imgs/absolute-demo.gif" width="512"> 
 
 2) <i>Animation using relative coordinates:</i> from the driving video we first estimate the relative movement of each keypoint,
 then we add this movement to the absolute position of keypoints in the source image.
 This keypoint along with source image is used for animation. This usually leads to better performance, however this requires
 that the object in the first frame of the video and in the source image have the same pose
 
-<img src="sup-mat/relative-demo.gif" width="512"> 
+<img src="imgs/relative-demo.gif" width="512"> 
 
 
 ### Datasets
