@@ -8,7 +8,7 @@ imageio==2.3.0
 kiwisolver==1.0.1
 matplotlib==2.2.2
 networkx==2.1
-numpy==1.15.0
+numpy==1.22.2
 pandas==0.23.4
 Pillow==5.2.0
 pycparser==2.18
@@ -27,3 +27,4 @@ torch==1.0.0
 torchvision==0.2.1
 tqdm==4.24.0
 
+setuptools>=65.5.1 # not directly required, pinned by Snyk to avoid a vulnerability
