@@ -27,3 +27,4 @@ torch==1.0.0
 torchvision==0.2.1
 tqdm==4.24.0
 
+urllib3>=2.2.2 # not directly required, pinned by Snyk to avoid a vulnerability
